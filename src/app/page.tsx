@@ -26,7 +26,7 @@ export default async function HomePage() {
           <div className="absolute inset-0 bg-[url('/images/hero-pattern.svg')] opacity-10" />
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-3xl mx-auto text-center">
-              <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+              <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white">
                 Gourmet Mushrooms,<br />Grown with Purpose
               </h1>
               <p className="text-lg md:text-xl text-primary-foreground/80 mb-8 max-w-2xl mx-auto">
@@ -35,12 +35,12 @@ export default async function HomePage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/shop">
-                  <Button size="lg" variant="outline" className="bg-background text-foreground hover:bg-background/90">
+                  <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 min-w-[160px]">
                     Shop Mushrooms
                   </Button>
                 </Link>
                 <Link href="/fungi">
-                  <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 border-accent">
+                  <Button size="lg" variant="outline" className="border-primary-foreground/50 text-white hover:bg-primary-foreground/10 min-w-[160px]">
                     Explore Our Fungi
                   </Button>
                 </Link>
@@ -96,14 +96,14 @@ export default async function HomePage() {
                 <h2 className="font-serif text-3xl font-bold">Featured Fungi</h2>
                 <p className="text-muted-foreground mt-1">Discover our favorite mushroom varieties</p>
               </div>
-              <Link href="/fungi" className="flex items-center gap-1 text-primary hover:underline">
+              <Link href="/fungi" className="flex items-center gap-1 text-primary hover:underline font-medium">
                 View All <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {featuredFungi.map((f) => (
                 <Link key={f.slug} href={`/fungi/${f.slug}`} className="group">
-                  <Card className="overflow-hidden hover:shadow-md transition-all duration-300">
+                  <Card className="overflow-hidden hover:shadow-lg transition-all duration-300 h-full">
                     <div className="aspect-[4/3] bg-muted relative overflow-hidden">
                       <Image
                         src={f.image || "/images/placeholder-fungi.jpg"}
@@ -136,14 +136,14 @@ export default async function HomePage() {
                 <h2 className="font-serif text-3xl font-bold">Popular Products</h2>
                 <p className="text-muted-foreground mt-1">Fresh from our farm to your kitchen</p>
               </div>
-              <Link href="/shop" className="flex items-center gap-1 text-primary hover:underline">
+              <Link href="/shop" className="flex items-center gap-1 text-primary hover:underline font-medium">
                 View Shop <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {featuredProducts.map((product) => (
                 <div key={product.id} className="group">
-                  <Card className="overflow-hidden hover:shadow-md transition-all duration-300">
+                  <Card className="overflow-hidden hover:shadow-lg transition-all duration-300 h-full">
                     <div className="aspect-square bg-muted relative overflow-hidden">
                       <Image
                         src={product.images[0] || "/images/placeholder-product.jpg"}
@@ -173,7 +173,7 @@ export default async function HomePage() {
         <section className="py-16">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div className="relative aspect-[4/3] bg-muted rounded-lg overflow-hidden">
+              <div className="relative aspect-[4/3] bg-muted rounded-lg overflow-hidden order-2 lg:order-1">
                 <Image
                   src="/images/about-farm.jpg"
                   alt="Dart Valley Fungi Farm"
@@ -181,7 +181,7 @@ export default async function HomePage() {
                   className="object-cover"
                 />
               </div>
-              <div>
+              <div className="order-1 lg:order-2">
                 <h2 className="font-serif text-3xl font-bold mb-4">From Our Farm to Your Table</h2>
                 <p className="text-muted-foreground mb-6">
                   Just over the hill from our farm in Devon, Mic Eaton and Luke Watson grow an incredible 
@@ -193,11 +193,14 @@ export default async function HomePage() {
                   friends at Barnaby's Brewhouse, and the Riverford Dairy. The resulting mushrooms are 
                   waste-saving, super sustainable, and amazingly tasty.
                 </p>
-                <Link href="/blog">
-                  <Button variant="outline">
-                    Read Our Story
-                  </Button>
-                </Link>
+                <div className="flex gap-4">
+                  <Link href="/about">
+                    <Button variant="outline">Our Story</Button>
+                  </Link>
+                  <Link href="/blog">
+                    <Button className="bg-primary text-primary-foreground hover:bg-primary/90">Read Our Blog</Button>
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
@@ -213,7 +216,7 @@ export default async function HomePage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                 {posts.slice(0, 2).map((post) => (
                   <Link key={post.slug} href={`/blog/${post.slug}`}>
-                    <Card className="h-full hover:shadow-md transition-shadow">
+                    <Card className="h-full hover:shadow-md transition-all duration-300 group">
                       <CardContent className="pt-6">
                         <p className="text-sm text-muted-foreground mb-2">
                           {new Date(post.date).toLocaleDateString("en-GB", {
@@ -222,7 +225,7 @@ export default async function HomePage() {
                             day: "numeric",
                           })}
                         </p>
-                        <h3 className="font-serif text-xl font-semibold mb-2 hover:text-primary transition-colors">
+                        <h3 className="font-serif text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
                           {post.title}
                         </h3>
                         <p className="text-muted-foreground line-clamp-3">
