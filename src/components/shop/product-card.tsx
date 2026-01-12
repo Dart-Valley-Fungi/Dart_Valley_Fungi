@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { formatPrice } from "@/lib/shopify";
+import { formatPriceWithWeight } from "@/lib/shopify";
 import type { Product } from "@/types";
 import { ShoppingBag, CheckCircle } from "lucide-react";
 
@@ -12,7 +12,7 @@ interface ProductCardProps {
 
 export function ProductCard({ product }: ProductCardProps) {
   return (
-    <Card className="overflow-hidden hover:shadow-md transition-shadow group">
+    <Card className="overflow-hidden hover:shadow-lg transition-all duration-300 group h-full">
       <div className="aspect-square bg-muted relative overflow-hidden">
         <Image
           src={product.images[0] || "/images/placeholder-product.jpg"}
@@ -39,13 +39,13 @@ export function ProductCard({ product }: ProductCardProps) {
         <p className="text-sm text-muted-foreground line-clamp-2">
           {product.description}
         </p>
-        <p className="mt-3 text-lg font-semibold text-primary">
-          {formatPrice(product.price, product.currency)}
+        <p className="mt-3 text-xl font-semibold text-primary">
+          {formatPriceWithWeight(product.price, product.currency, product.weight)}
         </p>
       </CardContent>
       <CardFooter className="pt-0">
         <Link href={`/shop/${product.handle}`} className="w-full">
-          <Button className="w-full gap-2">
+          <Button className="w-full gap-2 bg-primary text-primary-foreground hover:bg-primary/90">
             <ShoppingBag className="h-4 w-4" />
             View Product
           </Button>

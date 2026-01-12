@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
-import { getAllProducts, getProductByHandle, formatPrice } from "@/lib/shopify";
+import { getAllProducts, getProductByHandle, formatPriceWithWeight } from "@/lib/shopify";
 import { Metadata } from "next";
 import Image from "next/image";
 import { ArrowLeft, CheckCircle, ShoppingBag } from "lucide-react";
@@ -76,7 +76,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 </p>
                 <h1 className="font-serif text-4xl font-bold mb-4">{product.title}</h1>
                 <p className="text-3xl font-semibold text-primary mb-6">
-                  {formatPrice(product.price, product.currency)}
+                  {formatPriceWithWeight(product.price, product.currency, product.weight)}
                 </p>
                 
                 <div className="flex items-center gap-2 mb-6">
@@ -97,8 +97,8 @@ export default async function ProductPage({ params }: ProductPageProps) {
                     <h3 className="font-semibold mb-2">Product Details</h3>
                     <ul className="space-y-2 text-sm">
                       <li><strong>Type:</strong> {product.productType}</li>
-                      <li><strong>Price:</strong> {formatPrice(product.price, product.currency)}</li>
-                      <li><strong>Currency:</strong> {product.currency}</li>
+                      <li><strong>Price:</strong> {formatPriceWithWeight(product.price, product.currency, product.weight)}</li>
+                      <li><strong>Country of Origin:</strong> Produced in the UK</li>
                     </ul>
                   </CardContent>
                 </Card>

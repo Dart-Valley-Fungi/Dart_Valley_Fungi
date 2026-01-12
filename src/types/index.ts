@@ -29,6 +29,7 @@ export interface Product {
   images: string[];
   availableForSale: boolean;
   productType: string;
+  weight?: string;
 }
 
 export interface CartItem {

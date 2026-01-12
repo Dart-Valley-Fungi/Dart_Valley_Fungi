@@ -33,8 +33,8 @@ export default function AboutPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="relative aspect-[4/3] bg-muted rounded-lg overflow-hidden">
                 <Image
-                  src="/images/about-farm.jpg"
-                  alt="Dart Valley Fungi Farm"
+                  src="/images/founders.jpg"
+                  alt="Dart Valley Fungi Founders"
                   fill
                   className="object-cover"
                 />
