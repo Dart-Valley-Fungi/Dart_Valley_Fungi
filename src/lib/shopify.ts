@@ -1,8 +1,8 @@
 import type { Product, Cart } from "@/types";
 
-const domain = process.env.SHOPIFY_STORE_DOMAIN;
-const storefrontAccessToken = process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN;
-const apiVersion = process.env.SHOPIFY_API_VERSION || "2025-01";
+const domain = process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN;
+const storefrontAccessToken = process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS_TOKEN;
+const apiVersion = process.env.NEXT_PUBLIC_SHOPIFY_API_VERSION || "2026-01";
 
 console.log("Shopify config:", { domain, hasToken: !!storefrontAccessToken, apiVersion });
 
@@ -246,7 +246,7 @@ function getMockProducts(): Product[] {
       description: "Freshly harvested Oyster mushrooms. Mild, sweet flavour with tender texture. Versatile and quick-cooking - great in soups, stir-fries, or simply sautéed.",
       price: 8.50,
       currency: "GBP",
-      images: ["/images/oyster-mushroom.jpg"],
+      images: ["/images/king-oyster.jpg"],
       availableForSale: true,
       productType: "Fresh Produce",
       weight: "~300g",
