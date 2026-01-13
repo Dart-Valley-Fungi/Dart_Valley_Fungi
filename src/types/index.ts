@@ -1,24 +1,3 @@
-export interface Fungi {
-  slug: string;
-  title: string;
-  latinName: string;
-  season: string;
-  habitat: string;
-  edibility: string;
-  summary: string;
-  content: string;
-  image?: string;
-}
-
-export interface BlogPost {
-  slug: string;
-  title: string;
-  date: string;
-  excerpt: string;
-  content: string;
-  image?: string;
-}
-
 export interface Product {
   id: string;
   handle: string;
@@ -30,17 +9,9 @@ export interface Product {
   availableForSale: boolean;
   productType: string;
   weight?: string;
-}
-
-export interface CartItem {
-  id: string;
-  product: Product;
-  quantity: number;
-}
-
-export interface Cart {
-  id: string;
-  items: CartItem[];
-  totalAmount: number;
-  currency: string;
+  blockWeight?: string;
+  fruitingTemp?: string;
+  incubationTime?: string;
+  expectedYield?: string;
+  storageInstructions?: string;
 }

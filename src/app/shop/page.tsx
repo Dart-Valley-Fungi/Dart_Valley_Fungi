@@ -5,26 +5,25 @@ import { getAllProducts } from "@/lib/shopify";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Shop",
-  description: "Buy fresh gourmet mushrooms, grow kits, and mushroom products from Dart Valley Fungi.",
+  title: "Products",
+  description: "Premium mushroom substrate blocks for professional growers and chefs.",
 };
 
 export default async function ShopPage() {
   const products = await getAllProducts();
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-white">
       <Header />
 
       <main className="flex-1">
-        <section className="py-16 lg:py-24 bg-primary text-primary-foreground">
+        <section className="py-20 bg-gray-50">
           <div className="container mx-auto px-4">
-            <div className="max-w-3xl mx-auto text-center">
-              <h1 className="font-serif text-4xl lg:text-5xl font-bold mb-4 text-white">
-                Shop Mushrooms
-              </h1>
-              <p className="text-lg text-primary-foreground/80">
-                Fresh gourmet mushrooms and grow kits, delivered from our Devon farm to your door.
+            <div className="max-w-2xl mx-auto text-center">
+              <h1 className="text-4xl font-semibold mb-4">Our Products</h1>
+              <p className="text-gray-600">
+                Premium ready-to-fruit substrate blocks for mushroom cultivation.
+                Grown sustainably in Devon using organic by-products.
               </p>
             </div>
           </div>
@@ -33,14 +32,14 @@ export default async function ShopPage() {
         <section className="py-16">
           <div className="container mx-auto px-4">
             {products.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 {products.map((product) => (
                   <ProductCard key={product.id} product={product} />
                 ))}
               </div>
             ) : (
               <div className="text-center py-12">
-                <p className="text-muted-foreground">No products available yet.</p>
+                <p className="text-gray-500">No products available yet.</p>
               </div>
             )}
           </div>

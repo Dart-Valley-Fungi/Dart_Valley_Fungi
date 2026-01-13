@@ -1,10 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { formatPriceWithWeight } from "@/lib/shopify";
+import { Card, CardContent } from "@/components/ui/card";
+import { formatPrice } from "@/lib/shopify";
 import type { Product } from "@/types";
-import { ShoppingBag, CheckCircle } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 interface ProductCardProps {
   product: Product;
@@ -12,45 +11,36 @@ interface ProductCardProps {
 
 export function ProductCard({ product }: ProductCardProps) {
   return (
-    <Card className="overflow-hidden hover:shadow-lg transition-all duration-300 group h-full">
-      <div className="aspect-square bg-muted relative overflow-hidden">
-        <Image
-          src={product.images[0] || "/images/placeholder-product.jpg"}
-          alt={product.title}
-          fill
-          className="object-cover group-hover:scale-105 transition-transform duration-300"
-        />
-        {product.availableForSale && (
-          <div className="absolute top-2 right-2">
-            <span className="flex items-center gap-1 text-xs bg-success/90 text-success-foreground px-2 py-1 rounded-full">
-              <CheckCircle className="h-3 w-3" />
-              In Stock
+    <Link href={`/shop/${product.handle}`}>
+      <Card className="overflow-hidden hover:shadow-lg transition-all duration-300 group h-full cursor-pointer border border-gray-100">
+        <div className="aspect-square bg-muted relative overflow-hidden">
+          <Image
+            src={product.images[0]}
+            alt={product.title}
+            fill
+            className="object-cover group-hover:scale-105 transition-transform duration-500"
+          />
+        </div>
+        <CardContent className="pt-6">
+          <p className="text-xs text-gray-500 uppercase tracking-wide mb-2">
+            {product.productType}
+          </p>
+          <h3 className="text-lg font-semibold mb-2 group-hover:text-primary transition-colors">
+            {product.title}
+          </h3>
+          <p className="text-sm text-gray-600 line-clamp-2 mb-4">
+            {product.description}
+          </p>
+          <div className="flex items-center justify-between">
+            <span className="text-xl font-semibold text-primary">
+              {formatPrice(product.price)}
+            </span>
+            <span className="flex items-center gap-1 text-sm text-primary font-medium">
+              Details <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </span>
           </div>
-        )}
-      </div>
-      <CardHeader className="pb-2">
-        <p className="text-xs text-muted-foreground uppercase tracking-wide">
-          {product.productType}
-        </p>
-        <CardTitle className="text-lg line-clamp-1">{product.title}</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <p className="text-sm text-muted-foreground line-clamp-2">
-          {product.description}
-        </p>
-        <p className="mt-3 text-xl font-semibold text-primary">
-          {formatPriceWithWeight(product.price, product.currency, product.weight)}
-        </p>
-      </CardContent>
-      <CardFooter className="pt-0">
-        <Link href={`/shop/${product.handle}`} className="w-full">
-          <Button className="w-full gap-2 bg-primary text-primary-foreground hover:bg-primary/90">
-            <ShoppingBag className="h-4 w-4" />
-            View Product
-          </Button>
-        </Link>
-      </CardFooter>
-    </Card>
+        </CardContent>
+      </Card>
+    </Link>
   );
 }

@@ -2,44 +2,32 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { ShoppingBag, Menu, X, Leaf } from "lucide-react";
+import { Menu, X, Leaf } from "lucide-react";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [cartCount] = useState(0);
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-primary text-primary-foreground">
+    <header className="sticky top-0 z-50 w-full bg-white border-b border-gray-100">
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
-          <Link href="/" className="flex items-center space-x-2">
-            <Leaf className="h-6 w-6 text-accent" />
-            <span className="font-serif text-xl font-bold text-white">
+          <Link href="/" className="flex items-center gap-2">
+            <Leaf className="h-5 w-5 text-primary" />
+            <span className="text-lg font-semibold text-gray-900">
               Dart Valley Fungi
             </span>
           </Link>
 
-          <nav className="hidden md:flex items-center space-x-6">
-            <Link href="/fungi" className="text-sm font-medium text-primary-foreground/80 hover:text-accent transition-colors">
-              Our Fungi
+          <nav className="hidden md:flex items-center gap-8">
+            <Link href="/shop" className="text-sm text-gray-600 hover:text-primary transition-colors">
+              Products
             </Link>
-            <Link href="/shop" className="text-sm font-medium text-primary-foreground/80 hover:text-accent transition-colors">
-              Shop
-            </Link>
-            <Link href="/blog" className="text-sm font-medium text-primary-foreground/80 hover:text-accent transition-colors">
-              Blog
-            </Link>
-            <Link href="/about" className="text-sm font-medium text-primary-foreground/80 hover:text-accent transition-colors">
+            <Link href="/about" className="text-sm text-gray-600 hover:text-primary transition-colors">
               About
             </Link>
-            <Link href="/cart" className="relative flex items-center" aria-label="Shopping cart">
-              <ShoppingBag className="h-5 w-5 text-primary-foreground/80 hover:text-accent transition-colors" />
-              {cartCount > 0 && (
-                <span className="absolute -top-2 -right-2 h-4 w-4 rounded-full bg-accent text-[10px] font-medium text-accent-foreground flex items-center justify-center">
-                  {cartCount}
-                </span>
-              )}
-            </Link>
+            <a href="mailto:hello@dartvalleyfungi.co.uk" className="text-sm text-gray-600 hover:text-primary transition-colors">
+              Contact
+            </a>
           </nav>
 
           <button
@@ -48,52 +36,37 @@ export function Header() {
             aria-label="Toggle menu"
           >
             {isMenuOpen ? (
-              <X className="h-6 w-6 text-white" />
+              <X className="h-5 w-5 text-gray-900" />
             ) : (
-              <Menu className="h-6 w-6 text-white" />
+              <Menu className="h-5 w-5 text-gray-900" />
             )}
           </button>
         </div>
 
         {isMenuOpen && (
-          <div className="md:hidden py-4 border-t border-primary-foreground/20">
+          <div className="md:hidden py-4 border-t border-gray-100">
             <nav className="flex flex-col space-y-4">
               <Link
-                href="/fungi"
-                className="text-sm font-medium text-primary-foreground/80 hover:text-accent transition-colors"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Our Fungi
-              </Link>
-              <Link
                 href="/shop"
-                className="text-sm font-medium text-primary-foreground/80 hover:text-accent transition-colors"
+                className="text-sm text-gray-600 hover:text-primary transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Shop
-              </Link>
-              <Link
-                href="/blog"
-                className="text-sm font-medium text-primary-foreground/80 hover:text-accent transition-colors"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Blog
+                Products
               </Link>
               <Link
                 href="/about"
-                className="text-sm font-medium text-primary-foreground/80 hover:text-accent transition-colors"
+                className="text-sm text-gray-600 hover:text-primary transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 About
               </Link>
-              <Link
-                href="/cart"
-                className="flex items-center space-x-2 text-sm font-medium text-primary-foreground/80 hover:text-accent transition-colors"
+              <a
+                href="mailto:hello@dartvalleyfungi.co.uk"
+                className="text-sm text-gray-600 hover:text-primary transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
-                <ShoppingBag className="h-4 w-4" />
-                <span>Cart {cartCount > 0 && `(${cartCount})`}</span>
-              </Link>
+                Contact
+              </a>
             </nav>
           </div>
         )}
